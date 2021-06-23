@@ -3,7 +3,7 @@ import {Button, ButtonGroup, Container, Table} from 'reactstrap';
 import moment from 'moment';
 import {toast} from 'react-toastify';
 import {Link} from "react-router-dom";
-import Header from "./Header";
+import Header from "../Common/Header";
 
 toast.configure();
 

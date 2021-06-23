@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
-import ServiceList from "./ServiceList";
-import ServiceEdit from "./ServiceEdit";
+import ServiceList from "../Service/ServiceList";
+import ServiceEdit from "../Service/ServiceEdit";
 
 export default function App() {
     return (

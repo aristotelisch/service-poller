@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import {toast} from "react-toastify";
-import Header from "./Header";
+import Header from "../Common/Header";
 
 toast.configure();
 
