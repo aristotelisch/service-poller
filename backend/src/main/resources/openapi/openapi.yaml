@@ -1,0 +1,147 @@
+openapi: "3.0.2"
+info:
+  title: Service Poller
+  version: "1.0"
+servers:
+  - url: http://localhost:8080
+paths:
+  /services:
+    get:
+      summary: Get all services
+      tags:
+        - Services
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceResource'
+
+    post:
+      summary: Create a service to be checked
+      tags:
+        - Services
+      requestBody:
+        description: |
+          **POST** request to create a new alert
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCreateResource'
+      responses:
+        201:
+          description: Created
+        400:
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: number
+                    example: 400
+                  timestamp:
+                    type: string
+                    example: "2021-06-21"
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: [
+                        "Invalid url format"
+                      ]
+  /services/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    put:
+      summary: Update service by id
+      tags:
+        - Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCreateResource'
+      responses:
+        200:
+          description: Resource updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResource'
+    delete:
+      tags:
+        - Services
+      summary: Delete service by id
+      responses:
+        204:
+          description: Deleted
+        404:
+          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+
+components:
+  schemas:
+    ApiError:
+      properties:
+        status:
+          example: 400
+          type: integer
+        timestamp:
+          example: 'date'
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+            example: ["Error description"]
+
+    ServiceResource:
+      description: |
+        Service to be checked for availability
+      properties:
+        name:
+          example: "Google Search Website"
+          type: string
+        url:
+          example: "https://www.google.com"
+          type: string
+        status:
+          example: "OK"
+          enum:
+            - "OK"
+            - "FAIL"
+        createdAt:
+          example: "2021-06-16T10:36:49.712829"
+          type: string
+        updatedAt:
+          example: "2021-06-16T10:38:49.712829"
+          type: string
+
+    ServiceCreateResource:
+      description: Service resource
+      properties:
+        name:
+          maxLength: 250
+          example: 'Google Search Website'
+          type: string
+        url:
+          maxLength: 100
+          example: 'https://www.google.com'
+          type: string
+
+security:
+  - securityRequirement: []
+

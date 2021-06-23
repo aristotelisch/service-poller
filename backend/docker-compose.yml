@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_USER: poller
+      MYSQL_PASSWORD: poller
+      MYSQL_DATABASE: poller
+
+volumes:
+  db_data: {}
