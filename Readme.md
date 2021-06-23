@@ -8,7 +8,7 @@
 - [License](#license)
 
 ## Intro
-Service Poller is an application that monitors your services on regular intervals and reports their availability. You can visualise the availability of your services as well as add, edit and delete them.
+Service Poller is an application that monitors your services on regular intervals and reports their availability. You can visualize the availability of your services as well as add, edit and delete them.
 This github repository contains the frontend application built with React and the backend application (API)
 built with Spring Boot and Mysql.
 
