@@ -28,7 +28,7 @@ provided you are running the backend api application localy on port 8080
 
 http://localhost:8080/swagger-ui/index.html?url=http://localhost:8080/actuator/openapi
 
-## Run the application
+## Installation
 ### Prerequisites
 - Docker
 - Node lts
