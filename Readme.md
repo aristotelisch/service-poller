@@ -1,5 +1,7 @@
 # Service Poller
 
+![Services Dashboard](UI_screenshot.png?raw=true "Services Dashboard")
+
 ## Table of Contents
 - [Intro](#intro)
 - [Features](#features)
@@ -28,7 +30,10 @@ provided you are running the backend api application localy on port 8080
 
 http://localhost:8080/swagger-ui/index.html?url=http://localhost:8080/actuator/openapi
 
-## Run the application
+![Api Documentation](api_docs_screenshot.png?raw=true "API Documentation")
+
+## Installation
+
 ### Prerequisites
 - Docker
 - Node lts
