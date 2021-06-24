@@ -20,7 +20,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import eu.happybit.poller.domain.ServiceCreateResource;
 import eu.happybit.poller.domain.ServiceStatus;
@@ -53,7 +52,7 @@ class ServiceControllerIT {
     alert.setUpdatedAt(LocalDateTime.now());
     alert.setCreatedAt(LocalDateTime.now());
 
-    Mockito.when(alertService.getAllServices()).thenReturn(List.of(alert));
+    Mockito.when(alertService.findAll()).thenReturn(List.of(alert));
 
     this.mockMvc
         .perform(get("/services").accept(MediaType.APPLICATION_JSON))

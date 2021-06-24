@@ -21,12 +21,12 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 public class AlertService {
-  public static final int CONNECT_TIMEOUT = 8000;
-  public static final int READ_TIMEOUT = 8000;
+  public static final int CONNECT_TIMEOUT = 4500;
+  public static final int READ_TIMEOUT = 4500;
 
   private final AlertRepository alertRepository;
 
-  public List<Alert> getAllServices() {
+  public List<Alert> findAll() {
     return alertRepository.findAll();
   }
 
@@ -41,7 +41,6 @@ public class AlertService {
 
   public ServiceStatus checkUrl(Alert alert) {
     HttpURLConnection connection = null;
-
     try {
       connection = (HttpURLConnection) new URL(alert.getUrl()).openConnection();
       connection.setConnectTimeout(CONNECT_TIMEOUT);
@@ -64,12 +63,7 @@ public class AlertService {
   public Alert saveNewStatus(Alert alert, ServiceStatus status) {
     log.info(">>>> Result for {} was {}", alert.getUrl(), status);
     alert.setStatus(status);
-    alertRepository.save(alert);
-    return alert;
-  }
-
-  public List<Alert> findAll() {
-    return alertRepository.findAll();
+    return alertRepository.save(alert);
   }
 
   public Alert update(ServiceUpdateResource newService, Long id) {
