@@ -46,6 +46,7 @@ class ServiceControllerIT {
   @DisplayName("Successfully retrieves a new service")
   void successfullyRetrieve2Services() throws Exception {
     Alert alert = new Alert();
+    alert.setId(1L);
     alert.setName("Test website");
     alert.setUrl("http://domain.com");
     alert.setStatus(ServiceStatus.OK);
@@ -55,7 +56,7 @@ class ServiceControllerIT {
     Mockito.when(alertService.findAll()).thenReturn(List.of(alert));
 
     this.mockMvc
-        .perform(get("/services").accept(MediaType.APPLICATION_JSON))
+        .perform(get("/api/services").accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
             .andExpect(jsonPath("$").isNotEmpty())
         .andExpect(openApi().isValid(OPENAPI_PATH));
@@ -66,7 +67,7 @@ class ServiceControllerIT {
   void returnEmptyListWhenNoServicesAvailable() throws Exception {
 
     this.mockMvc
-        .perform(get("/services").accept(MediaType.APPLICATION_JSON))
+        .perform(get("/api/services").accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(openApi().isValid(OPENAPI_PATH))
         .andExpect(jsonPath("$", hasSize(0)));
@@ -80,7 +81,7 @@ class ServiceControllerIT {
 
     this.mockMvc
         .perform(
-            post("/services")
+            post("/api/services")
                 .content(objectMapper.writeValueAsString(serviceCreateResource))
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -94,7 +95,7 @@ class ServiceControllerIT {
   @DisplayName("When Deleting and alert that exists return no content")
   void deletingExistingAlertReturnsNoContent() throws Exception {
 
-    this.mockMvc.perform(delete("/services/10").accept(MediaType.APPLICATION_JSON))
+    this.mockMvc.perform(delete("/api/services/10").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent())
             .andExpect(openApi().isValid(OPENAPI_PATH));
   }
