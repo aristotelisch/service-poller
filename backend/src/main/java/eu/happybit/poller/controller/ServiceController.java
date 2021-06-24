@@ -29,7 +29,7 @@ public class ServiceController {
 
   @GetMapping
   public ResponseEntity<List<ServiceResource>> index() {
-    return ResponseEntity.ok(AlertMapper.MAPPER.map(alertService.getAllServices()));
+    return ResponseEntity.ok(AlertMapper.MAPPER.map(alertService.findAll()));
   }
 
   @GetMapping("/{id}")

@@ -13,5 +13,14 @@ services:
       MYSQL_PASSWORD: poller
       MYSQL_DATABASE: poller
 
+  echo:
+    image: hashicorp/http-echo:0.2.3
+    ports:
+      - 8081:5678
+    environment:
+      text: "Hello"
+    command: ["-text", "hello world", "-listen", ":5678"]
+    restart: unless-stopped
+
 volumes:
   db_data: {}
