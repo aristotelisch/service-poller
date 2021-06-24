@@ -24,7 +24,7 @@ public class ScheduledCheck {
     log.info(">>> Finished firing polling checks.");
   }
 
-  private void startAsyncCheck(Alert alert) {
+  protected void startAsyncCheck(Alert alert) {
     CompletableFuture.supplyAsync(
             () -> {
               log.info(">>>> Checking {}", alert.getUrl());
