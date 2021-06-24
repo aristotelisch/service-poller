@@ -5,7 +5,7 @@ info:
 servers:
   - url: http://localhost:8080
 paths:
-  /services:
+  /api/services:
     get:
       summary: Get all services
       tags:
@@ -54,7 +54,7 @@ paths:
                       example: [
                         "Invalid url format"
                       ]
-  /services/{id}:
+  /api/services/{id}:
     parameters:
       - in: path
         name: id
@@ -112,6 +112,9 @@ components:
       description: |
         Service to be checked for availability
       properties:
+        id:
+          example: 1
+          type: integer
         name:
           example: "Google Search Website"
           type: string
