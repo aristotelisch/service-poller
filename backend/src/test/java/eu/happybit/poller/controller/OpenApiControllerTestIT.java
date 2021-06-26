@@ -17,6 +17,10 @@ class OpenApiControllerTestIT {
 
   @Autowired MockMvc mockMvc;
 
+  /**
+   * Test if the openapi endpoint returns 200
+   * @throws Exception
+   */
   @Test
   void show() throws Exception {
     this.mockMvc.perform(get(OPENAPI_URL)).andExpect(status().isOk());

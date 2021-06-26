@@ -14,6 +14,8 @@
 	<name>poller</name>
 	<description>Service Poller</description>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
 		<openapi-parser.version>4.0.4</openapi-parser.version>
 		<swagger-ui.version>3.43.0</swagger-ui.version>
@@ -22,6 +24,14 @@
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 		<shedlock.version>4.24.0</shedlock.version>
         <flyway.version>7.10.0</flyway.version>
+		<mysql-connector.version>8.0.25</mysql-connector.version>
+		<!-- JaCoCo Properties -->
+		<jacoco.version>0.8.7</jacoco.version>
+		<sonar.language>java</sonar.language>
+		<sonar.exclusions>**/src/main/java/eu/happybit/poller/config/**, **/src/main/java/eu/happybit/poller/domain/**, **/src/main/java/eu/happybit/poller/controller/**, **/src/main/java/eu/happybit/poller/exception/**, **/src/main/java/eu/happybit/poller/entity/**</sonar.exclusions>
+		<sonar.projectKey>aristotelisch_service-poller</sonar.projectKey>
+		<sonar.organization>aristotelisch-github</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -55,7 +65,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+			<version>${mysql-connector.version}</version>
 		</dependency>
 
 		<dependency>
@@ -101,7 +111,16 @@
 			<optional>true</optional>
 		</dependency>
 
+
 		<!-- Test dependencies -->
+
+		<!-- Test coverage -->
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>${jacoco.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -142,7 +161,9 @@
 						</exclude>
 
 					</excludes>
-
+					<fork>false</fork>
+					<wait>1000</wait>
+					<maxAttempts>180</maxAttempts>
 				</configuration>
 				<executions>
 					<execution>
@@ -193,6 +214,30 @@
 						<arg>-Amapstruct.defaultComponentModel=spring</arg>
 					</compilerArgs>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>eu/happybit/poller/service/**</include>
+						<include>eu/happybit/poller/mapper/**</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
