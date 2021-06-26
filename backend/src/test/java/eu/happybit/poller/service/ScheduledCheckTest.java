@@ -40,7 +40,7 @@ class ScheduledCheckTest {
         when(alertService.checkUrl(alert)).thenReturn(ServiceStatus.OK);
         scheduledCheck.startPolling();
 
-        verify(alertService,timeout(100).times(1)).checkUrl(alert);
-        verify(alertService,timeout(100).times(1)).saveNewStatus(alert, ServiceStatus.OK);
+        verify(alertService,timeout(1000).times(1)).checkUrl(alert);
+        verify(alertService,timeout(1000).times(1)).saveNewStatus(alert, ServiceStatus.OK);
     }
 }
