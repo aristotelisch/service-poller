@@ -11,22 +11,22 @@
 
 ## Intro
 Service Poller is an application that monitors your services on regular intervals and reports their availability. You can visualize the availability of your services as well as add, edit and delete them.
-This github repository contains the frontend application built with React and the backend application (API)
+This GitHub repository contains the frontend application built with React and the backend application (API)
 built with Spring Boot and Mysql.
 
 ## Features
 - __CRUD operations:__ Full create/update/delete functionality for services
-- __Maintain State:__ Added services are kept when the server is restarted
+- __Maintain State:__ Keep added services after the restarting server
 - __Save Timestamps:__ Present whenever a service was added and when the last change was
 made
-- __Realtime Updates:__ The results from the poller are automaticaly shown to the user without a page reload
+- __Realtime Updates:__ Automatically show the polling results to the user without a page reload
 - __Animated Notifications:__ Informative notifications with nice looking animations on add/remove services
-- __Poller Protection:__ The poller is protected from misbehaving services (for example services answering really slowly)
+- __Poller Protection:__ Protect poller from misbehaving services (for example services answering really slowly)
 - __Url Validation:__ Validate Urls ("sdgf" is not a valid service url)
 
 ## API
-The API is documented with the OpenAPI 3 specification and can be viewed via swagger ui at the following url
-provided you are running the backend api application localy on port 8080
+The OpenAPI 3 documentation can be viewed via swagger ui at the following url
+provided you are running the backend api application locally on port 8080
 
 http://localhost:8080/swagger-ui/index.html?url=http://localhost:8080/actuator/openapi
 
@@ -80,5 +80,6 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 <div align="center">
   <sub>Service Status Monitoring application. Built with ❤︎ by
-  <a href="https://twitter.com/aristotelis_ch">Aristotelis Christou
+      <a href="https://twitter.com/aristotelis_ch">Aristotelis Christou</a>
+  </sub>
 </div>

@@ -3,7 +3,7 @@ services:
   frontend:
     build:
       context: .
-    image: aristotelisch/poller:latest
+    image: aristotelisch/poller-frontend:latest
     ports:
       - 80:80
     volumes:
