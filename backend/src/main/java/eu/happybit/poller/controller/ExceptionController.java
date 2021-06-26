@@ -51,4 +51,15 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
             .build(),
         HttpStatus.NOT_FOUND);
   }
+
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<ApiError> handleExceptions(Exception ex) {
+    return new ResponseEntity<>(
+        ApiError.builder()
+            .timestamp(LocalDateTime.now())
+            .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+            .errors(List.of(ex.getLocalizedMessage()))
+            .build(),
+        HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }

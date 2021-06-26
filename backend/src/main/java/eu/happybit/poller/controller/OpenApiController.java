@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import eu.happybit.poller.exception.OpenApiException;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Serve openapi specification
+ */
 @Slf4j
 @RestController
 @RequestMapping("/actuator/openapi")
@@ -24,6 +27,11 @@ public class OpenApiController {
     this.resourceLoader = resourceLoader;
   }
 
+  /**
+   * Get the openapi specification yml file
+   * @return The openapi specification file
+   * @throws IOException
+   */
   @GetMapping
   @ResponseBody
   public String show() throws IOException {
