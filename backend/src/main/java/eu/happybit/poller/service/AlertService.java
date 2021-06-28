@@ -3,6 +3,7 @@ package eu.happybit.poller.service;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -51,7 +52,7 @@ public class AlertService {
    * @param id The unique database id of an alert
    */
   public void delete(Long id) {
-    Alert alert = alertRepository.findById(id).orElseThrow(() -> new ServiceNotFoundException(id));
+    var alert = alertRepository.findById(id).orElseThrow(() -> new ServiceNotFoundException(id));
     alertRepository.delete(alert);
   }
 
@@ -89,6 +90,7 @@ public class AlertService {
   public Alert saveNewStatus(Alert alert, ServiceStatus status) {
     log.info(">>>> Result for {} was {}", alert.getUrl(), status);
     alert.setStatus(status);
+    alert.setUpdatedAt(LocalDateTime.now());
     return alertRepository.save(alert);
   }
 
@@ -100,7 +102,7 @@ public class AlertService {
    * @return the newly saved alert object
    */
   public Alert update(ServiceUpdateResource newService, Long id) {
-    Alert alert = AlertMapper.MAPPER.map(newService);
+    var alert = AlertMapper.MAPPER.map(newService);
     return alertRepository
         .findById(id)
         .map(
